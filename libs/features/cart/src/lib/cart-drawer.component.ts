@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
@@ -47,12 +47,13 @@ import { PriceComponent, LibPillComponent } from '@shopmono/shared-ui';
 
         <div class="cart-content">
           <!-- Empty Cart -->
-          <div class="empty-cart" *ngIf="cartStore.isEmpty()">
-            <mat-icon class="empty-icon">shopping_cart</mat-icon>
-            <h3>Your cart is empty</h3>
-            <p>Add some products to get started!</p>
-          </div>
-
+          @if(cartStore.isEmpty()) {
+            <div class="empty-cart" >
+              <mat-icon class="empty-icon">shopping_cart</mat-icon>
+              <h3>Your cart is empty</h3>
+              <p>Add some products to get started!</p>
+            </div>
+          }
           <!-- Cart Items -->
           <div class="cart-items" *ngIf="!cartStore.isEmpty()">
             <div class="cart-item" *ngFor="let item of cartStore.items()">
@@ -334,7 +335,8 @@ export class CartDrawerComponent {
   @Output() openedChange = new EventEmitter<boolean>();
   @Output() checkout = new EventEmitter<void>();
 
-  constructor(public cartStore: CartStore) {}
+  public cartStore = inject(CartStore)
+  // constructor(public cartStore: CartStore) {}
 
   close(): void {
     this.openedChange.emit(false);

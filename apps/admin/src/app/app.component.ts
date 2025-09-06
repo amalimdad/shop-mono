@@ -67,10 +67,7 @@ import { LibAppToolbarComponent } from '@shopmono/shared-ui';
   `,
   styleUrl: './app.scss'
 })
-export class AppComponent implements OnInit {
+export class AppComponent  {
   title = 'admin';
 
-  constructor() {}
-
-  ngOnInit(): void {}
 }
