@@ -1,0 +1,26 @@
+<div class="table-container">
+  <table mat-table [dataSource]="dataSource" class="data-table">
+    <ng-container *ngFor="let column of columns" [matColumnDef]="column.key">
+      <th mat-header-cell *matHeaderCellDef>{{ column.label }}</th>
+      <td mat-cell *matCellDef="let element">
+        <ng-container [ngSwitch]="column.type">
+          <span *ngSwitchCase="'text'">{{ getValue(element, column.key) }}</span>
+          <lib-price *ngSwitchCase="'price'" [price]="getNumberValue(element, column.key)"></lib-price>
+          <lib-pill *ngSwitchCase="'status'" [color]="getStatusColor(getStringValue(element, column.key))">
+            {{ getValue(element, column.key) }}
+          </lib-pill>
+          <ng-container *ngSwitchDefault>{{ getValue(element, column.key) }}</ng-container>
+        </ng-container>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator
+    *ngIf="paginated"
+    [length]="totalItems"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    (page)="onPageChange($event)">
+  </mat-paginator>
+</div>
