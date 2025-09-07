@@ -1,5 +1,5 @@
-import { Injectable, signal, computed } from '@angular/core';
-import { BehaviorSubject, Observable, of, delay, tap } from 'rxjs';
+import { Injectable, signal, computed, inject } from '@angular/core';
+import {  Observable, of, delay, tap } from 'rxjs';
 
 export interface User {
   id: string;
@@ -91,10 +91,9 @@ export class FakeApiService {
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(
-    private fakeApi: FakeApiService,
-    private authStore: AuthStore
-  ) {}
+  private authStore = inject(AuthStore);
+  private fakeApi = inject(FakeApiService);
+
 
   login(username: string, password: string): Observable<{ token: string; user: User }> {
     return this.fakeApi.login(username, password).pipe(

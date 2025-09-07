@@ -284,7 +284,7 @@ export class ProductDetailComponent implements OnInit {
 
   catalogService = inject(CatalogService);
 
-  status: number = 0;
+  status = 0;
   ngOnInit(): void {
     if (this.productId) {
       this.loadProduct();

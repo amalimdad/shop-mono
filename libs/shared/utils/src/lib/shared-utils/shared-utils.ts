@@ -44,11 +44,16 @@ export class Validators {
     return emailRegex.test(email);
   }
 
-  static required(value: any): boolean {
+  static required(value: unknown): boolean {
     if (typeof value === 'string') {
       return value.trim().length > 0;
     }
-    return value != null && value !== '';
+    if (value == null) return false;
+    if (typeof value === 'number') return true;
+    if (typeof value === 'boolean') return true;
+    if (Array.isArray(value)) return value.length > 0;
+    if (typeof value === 'object') return Object.keys(value as Record<string, unknown>).length > 0;
+    return true;
   }
 
   static minLength(value: string, min: number): boolean {

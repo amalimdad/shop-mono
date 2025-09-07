@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit, signal, computed } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, signal, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -232,8 +232,8 @@ export class ProductListComponent implements OnInit {
   selectedCategory = signal('');
 
   private searchSubject = new Subject<string>();
-
-  constructor(private catalogService: CatalogService) {
+  private catalogService = inject(CatalogService);
+  constructor() {
     this.searchSubject.pipe(
       debounceTime(300),
       distinctUntilChanged()

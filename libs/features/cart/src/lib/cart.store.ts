@@ -32,7 +32,7 @@ export class CartStore {
     this.loadFromStorage();
   }
 
-  addItem(product: Product, quantity: number = 1): void {
+  addItem(product: Product, quantity = 1): void {
     const currentItems = this._cartState().items;
     const existingItemIndex = currentItems.findIndex(item => item.product.id === product.id);
 

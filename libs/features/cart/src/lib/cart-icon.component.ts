@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -25,7 +25,7 @@ import { CartStore } from './cart.store';
   `]
 })
 export class CartIconComponent {
-  constructor(public cartStore: CartStore) {}
+  public cartStore = inject(CartStore)
 
   onCartClick(): void {
     // This will be handled by the parent component
