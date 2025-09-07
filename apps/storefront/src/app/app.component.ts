@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, Router } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -48,10 +48,7 @@ import { CartIconComponent } from '@shopmono/features-cart';
     }
   `]
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'storefront';
-
-  constructor() {}
-
-  ngOnInit(): void {}
+  private router = inject(Router);
 }

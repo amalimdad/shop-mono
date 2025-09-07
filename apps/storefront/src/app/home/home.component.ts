@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Product } from '@shopmono/shared-mocks';
@@ -33,10 +33,8 @@ import { ToastService } from '@shopmono/shared-ui';
 export class HomeComponent {
   cartDrawerOpen = signal(false);
 
-  constructor(
-    private router: Router,
-    private toastService: ToastService
-  ) {}
+  private router = inject(Router);
+  private toastService = inject(ToastService);
 
   onAddToCart(product: Product): void {
     // This will be handled by the cart store

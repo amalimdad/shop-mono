@@ -17,8 +17,8 @@
     "paths": {
       "@shopmono/features-cart": ["libs/features/cart/src/index.ts"],
       "@shopmono/features-catalog": ["libs/features/catalog/src/index.ts"],
-      "@shopmono/shared-auth-data-access": [
-        "libs/shared/auth/data-access/src/index.ts"
+      "@shopmono/shared-data-access-auth": [
+        "libs/shared/data-access/auth/src/index.ts"
       ],
       "@shopmono/shared-mocks": ["libs/shared/mocks/src/index.ts"],
       "@shopmono/shared-ui": ["libs/shared/ui/src/index.ts"],

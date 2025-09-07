@@ -11,7 +11,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { Product } from '@shopmono/shared-mocks' ;
 import { CatalogService } from './catalog.service';
 import { LibAppCardComponent, PriceComponent, StarRatingComponent, LibPillComponent } from '@shopmono/shared-ui';
-
 @Component({
   selector: 'lib-product-detail',
   standalone: true,
@@ -285,10 +284,11 @@ export class ProductDetailComponent implements OnInit {
 
   catalogService = inject(CatalogService);
 
-
+  status: number = 0;
   ngOnInit(): void {
     if (this.productId) {
       this.loadProduct();
+      // this.status = Status.Empty
     }
   }
 

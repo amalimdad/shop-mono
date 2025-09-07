@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { CartDrawerComponent } from '@shopmono/features-cart';
@@ -29,10 +29,8 @@ import { ToastService } from '@shopmono/shared-ui';
   `]
 })
 export class CartComponent {
-  constructor(
-    private router: Router,
-    private toastService: ToastService
-  ) {}
+  private router = inject(Router);
+  private toastService = inject(ToastService);
 
   onCheckout(): void {
     this.toastService.success('Order placed successfully!');

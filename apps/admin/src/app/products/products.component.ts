@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -64,10 +64,8 @@ export class ProductsComponent implements OnInit {
     { key: 'categories', label: 'Categories', type: 'text' as const }
   ];
 
-  constructor(
-    private dialog: MatDialog,
-    private toastService: ToastService
-  ) {}
+  private dialog = inject(MatDialog);
+  private toastService = inject(ToastService);
 
   ngOnInit(): void {
     this.loadProducts();

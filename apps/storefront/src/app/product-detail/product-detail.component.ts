@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '@shopmono/shared-mocks';
@@ -21,12 +21,10 @@ import { ToastService } from '@shopmono/shared-ui';
 export class ProductDetailComponent implements OnInit {
   productId = signal('');
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private cartStore: CartStore,
-    private toastService: ToastService
-  ) {}
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private cartStore = inject(CartStore);
+  private toastService = inject(ToastService);
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -42,4 +40,10 @@ export class ProductDetailComponent implements OnInit {
   onBack(): void {
     this.router.navigate(['/']);
   }
+
+}
+export enum Status {
+  PENDING = 1,
+  EMPTY = 0,
+  SHIPPED = 2
 }
