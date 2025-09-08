@@ -16,12 +16,10 @@ export default [
           enforceBuildableLibDependency: true,
           allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
           depConstraints: [
-            { sourceTag: 'scope:shared', onlyDependOnLibsWithTags: ['scope:shared'] },
             { sourceTag: 'type:utils', onlyDependOnLibsWithTags: ['type:utils'] },
             { sourceTag: 'type:ui', onlyDependOnLibsWithTags: ['type:ui', 'type:utils'] },
             { sourceTag: 'type:data-access', onlyDependOnLibsWithTags: ['type:data-access', 'type:utils'] },
             { sourceTag: 'type:feature', onlyDependOnLibsWithTags: ['type:feature', 'type:data-access', 'type:ui', 'type:utils', 'scope:shared'] },
-            // { sourceTag: 'type:app', onlyDependOnLibsWithTags: ['scope:shared'] },
             { sourceTag: 'scope:admin', onlyDependOnLibsWithTags: ['scope:admin', 'scope:shared'] },
             { sourceTag: 'scope:storefront', onlyDependOnLibsWithTags: ['scope:storefront', 'scope:shared'] },
             { sourceTag: 'type:app', onlyDependOnLibsWithTags: ['scope:shared', 'type:feature'] },

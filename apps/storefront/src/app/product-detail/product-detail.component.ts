@@ -42,7 +42,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
 }
-export enum Status {
+export enum StatusEnum {
   PENDING = 1,
   EMPTY = 0,
   SHIPPED = 2
