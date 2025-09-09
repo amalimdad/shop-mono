@@ -1,21 +1,51 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SharedAuthDataAccess } from './shared-auth-data-access';
+import { TestBed } from '@angular/core/testing';
+import {
+  AuthService,
+  AuthStore,
+  FakeApiService,
+} from './shared-auth-data-access';
 
-describe('SharedAuthDataAccess', () => {
-  let component: SharedAuthDataAccess;
-  let fixture: ComponentFixture<SharedAuthDataAccess>;
+describe('AuthService', () => {
+  let service: AuthService;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [SharedAuthDataAccess],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(SharedAuthDataAccess);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(AuthService);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+});
+
+describe('AuthStore', () => {
+  let store: AuthStore;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    store = TestBed.inject(AuthStore);
+  });
+
+  it('should be created', () => {
+    expect(store).toBeTruthy();
+  });
+
+  it('should initialize with unauthenticated state', () => {
+    expect(store.isAuthenticated()).toBe(false);
+    expect(store.user()).toBeUndefined();
+    expect(store.token()).toBeUndefined();
+  });
+});
+
+describe('FakeApiService', () => {
+  let service: FakeApiService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(FakeApiService);
+  });
+
+  it('should be created', () => {
+    expect(service).toBeTruthy();
   });
 });
